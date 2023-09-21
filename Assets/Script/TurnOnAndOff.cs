@@ -26,11 +26,11 @@ public class TurnOnAndOff : MonoBehaviour
 
         if(panelIsEnable == true)
         {
-            Time.timeScale = 0;
+            GameSystem.instance.isPaused = true;
         }
         else
         {
-            Time.timeScale = 1;
+            GameSystem.instance.isPaused = false;
         }
     }
 }

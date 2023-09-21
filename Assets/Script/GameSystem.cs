@@ -4,20 +4,42 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    public GameObject gameOverPanel;
-    public GameObject pausePanel;
+    public static GameSystem instance;
+
+    [SerializeField] private GameObject startingPanel;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject pausePanel;
+    public bool isPaused;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        startingPanel.SetActive(true);
         gameOverPanel.SetActive(false);
         pausePanel.SetActive(false);
+        isPaused = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isPaused == true)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +54,12 @@ public class GameSystem : MonoBehaviour
     public void Restart()
     {
         Application.LoadLevel("Gameplay");
-        Time.timeScale = 1;
+        isPaused = true;
+    }
+
+    public void PlayGame()
+    {
+        startingPanel.SetActive(false);
+        isPaused = false;
     }
 }
