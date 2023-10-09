@@ -47,7 +47,7 @@ public class GameSystem : MonoBehaviour
         if (collision.tag.Equals("Point"))
         {
             gameOverPanel.SetActive(true);
-            Time.timeScale = 0;
+            isPaused = true;
         }
     }
 

@@ -20,8 +20,8 @@ public class Spawner : MonoBehaviour
     {
         while(true)
         {
-            var wanted = Random.Range(minTrans, maxTrans);
-            var position = new Vector3(wanted, transform.position.y);
+            var area = Random.Range(minTrans, maxTrans);
+            var position = new Vector3(area, transform.position.y);
             GameObject gameObject = Instantiate(objectPrefabs[Random.Range(0, objectPrefabs.Length)], position, Quaternion.identity);
             yield return new WaitForSeconds(spawnLength);
             Destroy(gameObject, objectDuration);
